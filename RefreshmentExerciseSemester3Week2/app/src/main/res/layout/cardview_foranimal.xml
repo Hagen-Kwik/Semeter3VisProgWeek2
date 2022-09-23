@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageforcardview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/animalfarmlogo" />
+
+            <TextView
+                android:id="@+id/namee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageforcardview"
+                app:layout_constraintTop_toTopOf="@+id/imageforcardview" />
+
+            <TextView
+                android:id="@+id/typee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/namee"
+                app:layout_constraintTop_toBottomOf="@+id/namee" />
+
+            <TextView
+                android:id="@+id/agee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/typee"
+                app:layout_constraintTop_toBottomOf="@+id/typee" />
+
+            <Button
+                android:id="@+id/eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Food"
+                app:layout_constraintEnd_toEndOf="@+id/speak"
+                app:layout_constraintTop_toBottomOf="@+id/speak" />
+
+            <Button
+                android:id="@+id/speak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Voice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageforcardview" />
+
+            <Button
+                android:id="@+id/editbutton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#00FBE7E7"
+                app:icon="@android:drawable/ic_menu_edit"
+                app:iconTint="#176800"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/agee"
+                app:layout_constraintTop_toBottomOf="@+id/agee" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:background="#00FFFFFF"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconTint="#FF0000"
+                app:layout_constraintStart_toEndOf="@+id/editbutton"
+                app:layout_constraintTop_toTopOf="@+id/editbutton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
