@@ -125,11 +125,16 @@ class masukin_data_activity : AppCompatActivity() {
                         home.animalARRAY[dataforedit] = temp
                     }
 
+                    val myIntent = Intent(this, home::class.java)
+                    startActivity(myIntent)
                     finish()
 
                 } else {
                     var temp = makenewclass(name, age.toInt(), uri, jenis, makanan)
                     home.animalARRAY.add(temp)
+
+                    val myIntent = Intent(this, home::class.java)
+                    startActivity(myIntent)
                     finish()
                 }
             }

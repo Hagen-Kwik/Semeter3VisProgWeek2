@@ -24,7 +24,7 @@ class home : AppCompatActivity(),CardListener {
     companion object {
         var animalARRAY: ArrayList<animalPARENT> = ArrayList()
         var final: ArrayList<animalPARENT> = ArrayList()
-
+        var lastclickedbutton: String = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,38 @@ class home : AppCompatActivity(),CardListener {
 
     override fun onResume() {
         super.onResume()
+
+        final.clear()
+        if (lastclickedbutton == "kambingbutton") {
+            for (i in animalARRAY) {
+                if (i is kambing) {
+                    final.add(i)
+                }
+            }
+            recyclerviewhome.adapter = adapterFINAL
+
+        } else if (lastclickedbutton == "sapibutton") {
+            for (i in animalARRAY) {
+                if (i is sapi) {
+                    final.add(i)
+                }
+            }
+            recyclerviewhome.adapter = adapterFINAL
+
+        } else if (lastclickedbutton == "ayambutton") {
+            for (i in animalARRAY) {
+                if (i is ayam) {
+                    final.add(i)
+                }
+            }
+            recyclerviewhome.adapter = adapterFINAL
+
+        } else{
+            recyclerviewhome.adapter = adapter
+    }
+        adapterFINAL.notifyDataSetChanged()
         adapter.notifyDataSetChanged()
+
     }
 
     fun listener(){
@@ -48,6 +79,7 @@ class home : AppCompatActivity(),CardListener {
             startActivity(myIntent)
         }
 
+//        baru dicheck kalo button diclick salah ga boleh gini
         sapibut.setOnClickListener {
             final.clear()
 
@@ -60,6 +92,8 @@ class home : AppCompatActivity(),CardListener {
             recyclerviewhome.adapter = adapterFINAL
             super.onResume()
             adapter.notifyDataSetChanged()
+            adapterFINAL.notifyDataSetChanged()
+            lastclickedbutton = "sapibutton"
         }
 
         ayambut.setOnClickListener {
@@ -70,10 +104,12 @@ class home : AppCompatActivity(),CardListener {
                     final.add(i)
                 }
             }
-
+            lastclickedbutton = "ayambutton"
             recyclerviewhome.adapter = adapterFINAL
             super.onResume()
             adapter.notifyDataSetChanged()
+            adapterFINAL.notifyDataSetChanged()
+
         }
 
         kambingbut.setOnClickListener {
@@ -83,13 +119,17 @@ class home : AppCompatActivity(),CardListener {
                     final.add(i)
                 }
             }
+            lastclickedbutton = "kambingbutton"
 
             recyclerviewhome.adapter = adapterFINAL
             super.onResume()
             adapter.notifyDataSetChanged()
+            adapterFINAL.notifyDataSetChanged()
+
         }
 
         clear.setOnClickListener {
+            lastclickedbutton = ""
             recyclerviewhome.adapter = adapter
         }
     }
