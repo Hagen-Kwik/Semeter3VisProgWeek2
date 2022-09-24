@@ -56,23 +56,42 @@ class masukin_data_activity : AppCompatActivity() {
         val dataforedit: Int = intent.getIntExtra("position", -1)
 
         if (dataforedit != -1) {
-            nama.getEditText()?.setText(home.animalARRAY.get(dataforedit).nama)
-            usia.getEditText()?.setText(home.animalARRAY.get(dataforedit).usia.toString())
-            if (home.animalARRAY.get(dataforedit).imageuri.toString().isNotEmpty()) {
-                PICTURE.setImageURI(home.animalARRAY.get(dataforedit).imageuri)
+            if (home.lastclickedbutton != "") {
+                nama.getEditText()?.setText(home.final.get(dataforedit).nama)
+                usia.getEditText()?.setText(home.final.get(dataforedit).usia.toString())
+                if (home.final.get(dataforedit).imageuri.toString().isNotEmpty()) {
+                    PICTURE.setImageURI(home.final.get(dataforedit).imageuri)
+                }
+
+                var jenisss = home.final.get(dataforedit).jenis
+
+                if (jenisss == "Sapi") {
+                    sapi.isChecked = true
+                } else if (jenisss == "Kambing") {
+                    kambing.isChecked = true
+                } else if (jenisss == "Ayam") {
+                    ayam.isChecked = true
+                }
+
+            } else {
+                nama.getEditText()?.setText(home.animalARRAY.get(dataforedit).nama)
+                usia.getEditText()?.setText(home.animalARRAY.get(dataforedit).usia.toString())
+                if (home.animalARRAY.get(dataforedit).imageuri.toString().isNotEmpty()) {
+                    PICTURE.setImageURI(home.animalARRAY.get(dataforedit).imageuri)
+                }
+
+                var jenisss = home.animalARRAY.get(dataforedit).jenis
+
+                if (jenisss == "Sapi") {
+                    sapi.isChecked = true
+                } else if (jenisss == "Kambing") {
+                    kambing.isChecked = true
+                } else if (jenisss == "Ayam") {
+                    ayam.isChecked = true
+                }
+
+                tambahORedit.text = "Edit Hewan"
             }
-
-            var jenisss = home.animalARRAY.get(dataforedit).jenis
-
-            if(jenisss == "Sapi"){
-                sapi.isChecked = true
-            } else if(jenisss == "Kambing"){
-                kambing.isChecked = true
-            } else if(jenisss == "Ayam"){
-                ayam.isChecked = true
-            }
-
-            tambahORedit.text = "Edit Hewan"
         }
 
 
@@ -112,17 +131,45 @@ class masukin_data_activity : AppCompatActivity() {
             }
 
             if (checking) {
-
-                Log.d("here",uri.toString())
-
                 if (dataforedit != -1) {
                     if(uri != null) {
+
+                        var objectTEMP = home.final.get(dataforedit)
+                        var index = 0
+                        var indexTEMP = 0
+
+                        for (i in home.animalARRAY){
+                            index++
+                            if(i == objectTEMP) {
+                                indexTEMP = index
+                                break
+                                }
+                        }
+                        indexTEMP -= 1
+
                         var temp = makenewclass(name, age.toInt(), uri, jenis, makanan)
-                        home.animalARRAY[dataforedit] = temp
+                        home.animalARRAY[indexTEMP] = temp
                     } else{
-                        uri = home.animalARRAY[dataforedit].imageuri
+
+                        var objectTEMP = home.final.get(dataforedit)
+                        Log.d("here", objectTEMP.toString())
+
+                        var indexTEMP = 0
+                        var index = 0
+
+                        for (i in home.animalARRAY){
+                            index++
+                            Log.d("inside loop", i.toString())
+                            if(i == objectTEMP) {
+                                indexTEMP = index
+                                break
+                            }
+                        }
+
+                        indexTEMP -= 1
+                        uri = home.final[dataforedit].imageuri
                         var temp = makenewclass(name, age.toInt(), uri, jenis, makanan)
-                        home.animalARRAY[dataforedit] = temp
+                        home.animalARRAY[indexTEMP] = temp
                     }
 
                     val myIntent = Intent(this, home::class.java)

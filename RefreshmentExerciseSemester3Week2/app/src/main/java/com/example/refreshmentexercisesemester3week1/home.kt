@@ -79,7 +79,6 @@ class home : AppCompatActivity(),CardListener {
             startActivity(myIntent)
         }
 
-//        baru dicheck kalo button diclick salah ga boleh gini
         sapibut.setOnClickListener {
             final.clear()
 
@@ -170,21 +169,29 @@ class home : AppCompatActivity(),CardListener {
     }
 
     override fun speakCLICKED(position: Int) {
-        var stringmakan = animalARRAY[position].makanan
-        var stringtipe = animalARRAY[position].type
-        if(stringtipe == "Sapi"){
-
-        }
+        if (lastclickedbutton == ""){
         Toast.makeText(this, animalARRAY[position].interaksi(), Toast.LENGTH_SHORT).show()
+    } else {
+            Toast.makeText(this, final[position].interaksi(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun interactCLICKED(position: Int) {
+        if (lastclickedbutton == ""){
+
         if (animalARRAY.get(position) is ayam) {
-            Toast.makeText(this, animalARRAY.get(position).memberimakan(1).toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, animalARRAY.get(position).memberimakan(1), Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, animalARRAY.get(position).memberimakan("rumput").toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, animalARRAY.get(position).memberimakan("rumput"), Toast.LENGTH_SHORT).show()
         }
+
+    } else {
+            if (final.get(position) is ayam) {
+                Toast.makeText(this, final.get(position).memberimakan(1), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, final.get(position).memberimakan("rumput"), Toast.LENGTH_SHORT).show()
+            }
     }
 
-
+    }
 }

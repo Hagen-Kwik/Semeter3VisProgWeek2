@@ -31,6 +31,8 @@ class RecyclerViewAdapter(val listanimal: ArrayList<animalPARENT>, val cardListe
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
+
+
         holder.setData(listanimal[position])
     }
 
