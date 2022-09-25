@@ -9,6 +9,7 @@ import adapter.RecyclerViewAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -155,8 +156,28 @@ class home : AppCompatActivity(),CardListener {
             Toast.makeText(applicationContext,
                 android.R.string.yes, Toast.LENGTH_SHORT).show()
 
-            animalARRAY.removeAt(position)
+            if (lastclickedbutton == "") {
+                animalARRAY.removeAt(position)
 
+            } else {
+
+                var objectTEMP = final[position]
+                var indexTEMP = -1
+                var index = 0
+
+                for (i in animalARRAY){
+                    index++
+                    if(i == objectTEMP) {
+                        indexTEMP = index
+                        break
+                    }
+                }
+
+                indexTEMP -= 1
+                animalARRAY.removeAt(indexTEMP)
+                final.removeAt(position)
+
+            }
             onResume()
         }
 
